@@ -18,9 +18,7 @@ namespace ui {
 
 	/* Private function definitions */
 
-	void Menu::writeText(std::string str, sf::Font font, unsigned int size, float x, float y,
-		const sf::Color &color) {
-
+	void Menu::writeText(std::string str, sf::Font font, unsigned int size, float x, float y, const sf::Color &color) {
 		sf::Text text;
 		text.setString(str);
 		text.setFont(font);
@@ -39,7 +37,9 @@ namespace ui {
 			/* Small scope just to be able to freely use the variable names */
 			float x = window->getSize().x / 2, y = 0;
 			int size = window->getSize().y * MenuTitleScaleFactor;
-			writeText(menu_title, MenuTitleFont, size, x, y);
+			title_location.x = x;
+			title_location.y = y;
+			title_location.size = size;
 		}
 
 		unsigned int menu_screen_height = window->getSize().y * (1 -  MenuTitleScaleFactor);
@@ -47,24 +47,35 @@ namespace ui {
 		unsigned int fontSize = block_height * 3/4;
 		float x = window->getSize().x / 2;
 		float y = window->getSize().y - 0.75 * menu_screen_height + block_height * 1 / 8;
-
-		sf::Color color = sf::Color::White;
-		/* Populating the menu options */
+		menu_location = new cordinates[menu_items.size];
+		/* Calculating Menu item locations */
 		for (int8_t i = 0; i < menu_items.size; ++i) {
-			if (i == currently_selected_item) {
-				color = sf::Color::Yellow;
-			}
-			writeText(menu_items.entries[i].title, MenuItemFont, fontSize, x, y, color);
+			menu_location[i].x = x;
+			menu_location[i].y = y;
 			y += block_height;
-			color = sf::Color::White;
 		}
 	}
 
+	void Menu::drawMenu() {
+		writeText(menu_title, MenuTitleFont, title_location.size, title_location.x, title_location.y);
+		sf::Color color = sf::Color::White;
+		for (int i = 0; i < menu_items.size; i++)
+		{
+			if (i == currently_selected_item) {
+				color = sf::Color::Yellow;
+			}
+			writeText(menu_items.entries[i].title, MenuItemFont, menu_location[i].size, menu_location[i].x, menu_location[i].y, color);
+			color = sf::Color::White;
+		}
+
+	}
+
 	void Menu::createMenu() {
+		setMenu();
 		while (window->isOpen())
 		{
 			window->clear();
-			setMenu();
+			drawMenu();
 			sf::Event event;
 			while (window->pollEvent(event)) {
 				if (event.type == sf::Event::Closed)

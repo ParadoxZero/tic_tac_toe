@@ -37,6 +37,7 @@ namespace ui {
 		struct cordinates {
 			float x;
 			float y;
+			int size;
 		} *menu_location, title_location;
 
 
@@ -47,7 +48,6 @@ namespace ui {
 		sf::RenderWindow *window;
 		std::string menu_title;
 
-		// Lesser means larger
 		// TODO: create an interface to set these
 		float MenuTitleScaleFactor = 0.125;
 		float MenuItemScaleFactor = 0.25;
@@ -58,6 +58,8 @@ namespace ui {
 
 		void setMenu();
 
+		void drawMenu();
+
 
 	public:
 		Menu(sf::RenderWindow *wnd) {
@@ -67,15 +69,19 @@ namespace ui {
 				exit(0);
 			MenuTitleFont.loadFromFile("sansation.ttf");
 		}
+		
 		Menu(sf::RenderWindow *window, std::string title) : Menu(window) {
 			setTitle(title);
 		}
+		
 		Menu(sf::RenderWindow *window, std::string title, MenuItem* items, int8_t length) : Menu(window, title) {
 			setMenuItems(items, length);
 		}
 
 		void setMenuItems(MenuItem *, int8_t);
+		
 		void setTitle(std::string title);
+		
 		void createMenu();
 
 
