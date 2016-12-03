@@ -2,7 +2,7 @@
 *	Copyright (C) Sidhin S Thomas (sidhin.thomas@gmail.com)
 */
 
-#include "game_controller.h"
+#include "game.h"
 #include "ui.h"
 #include "actions.h"
 #include "main_menu_events.h"
@@ -15,8 +15,12 @@ namespace game {
 
 	/* Entry point of game */
 	int GameMaster::run() {
+		setup();
 		
-		
+		return 0;
+	} //run()
+
+	void GameMaster::setup() {
 		/* Creating main menu items */
 		ui::MenuItem menu_items[5];
 		menu_items[0].title = "Start";
@@ -28,9 +32,7 @@ namespace game {
 
 		ui::Menu mainMenu(window, std::string("Main Menu"), menu_items, 3);
 		mainMenu.createMenu();
-
-		return 0;
-	} //run()
+	} // setup()
 
 	GameMaster* GameMaster::getGameMaster(sf::RenderWindow *window) {
 		if (game_master == nullptr)

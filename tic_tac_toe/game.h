@@ -36,6 +36,8 @@ namespace game {
 		sf::RenderWindow *window;
 		GameMaster(sf::RenderWindow *);
 
+		void setup();
+
 	}; //GameMaster
 
 	/*	Who will be responsible for the music and sound*/
@@ -45,9 +47,20 @@ namespace game {
 
 	//===========================================================
 
-	class GameBoard{
+	class GameBoard {
+	public:
+		
+		enum Player {
+			Zero,
+			Cross
+		};
 
-	};
+		void createBoard();
+		bool markTurn(int i, int j, Player player);
+		int CheckResult();
+
+
+	}; // GameBoard
 
 
 

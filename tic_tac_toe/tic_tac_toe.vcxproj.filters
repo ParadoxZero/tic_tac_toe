@@ -30,6 +30,9 @@
     <ClCompile Include="game_master.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameBoard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ui.h">
@@ -41,7 +44,7 @@
     <ClInclude Include="actions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game_controller.h">
+    <ClInclude Include="game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
