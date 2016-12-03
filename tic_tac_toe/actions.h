@@ -19,11 +19,12 @@ namespace events {
 	class Action {
 	public:
 		/* The function that will be called by the menu
-		   Depending on the return value of start the menu will close
-			- If start return true : menu will not close
-			- If start return false: menu will close
+		   Depending on the return value of start() the menu will close
+			- If start() return true : menu will not close
+			- If start() return false: menu will close
 
-			usefull when you need to implement a feature after which it should not return to the calling menu.
+			usefull when you need to implement a feature after which it should not return to the menu.
+			eg. Back/Exit/Game Mode etc.
 		*/
 		virtual bool start() = 0;
 	};

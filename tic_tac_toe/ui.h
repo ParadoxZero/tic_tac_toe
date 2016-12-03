@@ -30,7 +30,7 @@ namespace ui {
 		} menu_items;
 
 		struct coordinates {
-			coordinates() { x = y = size = 0; }
+			coordinates() { x = y = 0.f; size = 0; }
 			float x;
 			float y;
 			int size;

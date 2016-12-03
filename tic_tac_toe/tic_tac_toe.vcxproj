@@ -116,11 +116,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ExitAction.cpp" />
+    <ClCompile Include="game_master.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="actions.h" />
+    <ClInclude Include="game_controller.h" />
     <ClInclude Include="main_menu_events.h" />
     <ClInclude Include="ui.h" />
   </ItemGroup>

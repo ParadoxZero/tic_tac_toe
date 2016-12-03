@@ -56,25 +56,25 @@ namespace ui {
 		text.setOrigin(textRect.width / 2.0f,0);
 		text.setPosition(sf::Vector2f(x,y));
 		window->draw(text);
-	}
+	} //writeText(...)
 
 	void Menu::setMenu() {
 
 		/* Setting title of menu */
 		{
 			/* Small scope just to be able to freely use the variable names */
-			float x = window->getSize().x / 2, y = 0;
-			int size = window->getSize().y * MenuTitleScaleFactor;
+			float x = (float) window->getSize().x / 2, y = 0;
+			int size = (int) window->getSize().y * MenuTitleScaleFactor;
 			title_location.x = x;
 			title_location.y = y;
 			title_location.size = size;
 		}
 
-		unsigned int menu_screen_height = window->getSize().y * (1 -  MenuTitleScaleFactor);
-		unsigned int block_height = menu_screen_height / menu_items.size * MenuItemScaleFactor;
-		unsigned int fontSize = block_height * 3/4;
-		float x = window->getSize().x / 2;
-		float y = window->getSize().y - 0.75 * menu_screen_height + block_height * 1 / 8;
+		unsigned int menu_screen_height =(int) window->getSize().y * (1 -  MenuTitleScaleFactor);
+		unsigned int block_height = (int) menu_screen_height / menu_items.size * MenuItemScaleFactor;
+		unsigned int fontSize = (int) block_height * 3/4;
+		float x = (float)window->getSize().x / 2;
+		float y = (float)window->getSize().y - 0.75 * menu_screen_height + block_height * 1 / 8;
 		menu_location = new coordinates[menu_items.size];
 		/* Calculating Menu item locations */
 		for (int8_t i = 0; i < menu_items.size; ++i) {
@@ -84,7 +84,7 @@ namespace ui {
 			y += block_height;
 		}
 		
-	}
+	} //setMenu()
 
 	void Menu::drawMenu() {
 		writeText(menu_title, MenuTitleFont, title_location.size, title_location.x, title_location.y);
@@ -98,7 +98,7 @@ namespace ui {
 			color = sf::Color::White;
 		}
 
-	}
+	} //drawMenu()
 
 
 } // namespace sui

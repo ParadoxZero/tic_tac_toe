@@ -28,11 +28,9 @@ namespace mm_events {
 	};
 
 	class ExitAction : public events::Action {
-	
+	/* Exit Option */
 	private:
 		sf::RenderWindow *window;
-		ui::Menu *dialog;
-		bool confirm = false;
 		bool getConfirmation();
 	public:
 		ExitAction(sf::RenderWindow *w) { window = w; }
@@ -42,7 +40,7 @@ namespace mm_events {
 
 
 	private:
-		/* Auxilary classess to help with function */
+		/* Action Items for the Dialog  */
 
 		class ConfirmationMenuAction : public events::Action {
 			bool *confirm;
@@ -50,10 +48,11 @@ namespace mm_events {
 			ConfirmationMenuAction(bool *val) { confirm = val; }
 			bool start() { 
 				*confirm = true;
-				return false; 
+				return false;
 			}
 		};
-
+		/* bool start() returns false in both case so that the dialog 
+		   will be closed after the action is selected */
 		class DeclineMenuAction : public events::Action {
 			bool *confirm;
 		public:
