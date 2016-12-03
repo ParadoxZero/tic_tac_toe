@@ -6,21 +6,16 @@
 #define SS_USER_INTERFACE
 
 
+
+#include "actions.h"
+
 /*--- Headers ---*/
 #include <SFML\Graphics.hpp>
-
 namespace ui {
 
-	/* Simple abstract class interface to implement Actions for Menu */
-	class EventAction {
-	public:
-		/* The function that will be called by the menu */
-		virtual void start() = 0;
-	};
-
-
+	
 	struct MenuItem {
-		EventAction *action;
+		events::Action *action;
 		std::string title;
 	};
 
@@ -35,6 +30,7 @@ namespace ui {
 		} menu_items;
 
 		struct cordinates {
+			cordinates() { x = y = size = 0; }
 			float x;
 			float y;
 			int size;

@@ -14,6 +14,33 @@ namespace ui {
 		menu_items.size = length;
 	}
 
+	void Menu::createMenu() {
+		setMenu();
+		while (window->isOpen())
+		{
+			window->clear();
+			drawMenu();
+			sf::Event event;
+			while (window->pollEvent(event)) {
+				if (event.type == sf::Event::Closed)
+					window->close();
+				else if (event.type == sf::Event::KeyPressed) {
+					if (event.key.code == sf::Keyboard::Up) {
+						currently_selected_item = (currently_selected_item - 1);
+						if (currently_selected_item < 0)
+							currently_selected_item = menu_items.size - 1;
+					}
+					else if (event.key.code == sf::Keyboard::Down) {
+						currently_selected_item = (currently_selected_item + 1) % (menu_items.size);
+					}
+					else if (event.key.code == sf::Keyboard::Return) {
+						menu_items.entries[currently_selected_item].action->start();
+					}
+				}
+			} // while( pollEvent )
+			window->display();
+		} // while window open
+	} //create menu
 
 
 	/* Private function definitions */
@@ -52,14 +79,16 @@ namespace ui {
 		for (int8_t i = 0; i < menu_items.size; ++i) {
 			menu_location[i].x = x;
 			menu_location[i].y = y;
+			menu_location[i].size = fontSize;
 			y += block_height;
 		}
+		
 	}
 
 	void Menu::drawMenu() {
 		writeText(menu_title, MenuTitleFont, title_location.size, title_location.x, title_location.y);
 		sf::Color color = sf::Color::White;
-		for (int i = 0; i < menu_items.size; i++)
+		for (int i = 0; i < menu_items.size; ++i)
 		{
 			if (i == currently_selected_item) {
 				color = sf::Color::Yellow;
@@ -70,31 +99,5 @@ namespace ui {
 
 	}
 
-	void Menu::createMenu() {
-		setMenu();
-		while (window->isOpen())
-		{
-			window->clear();
-			drawMenu();
-			sf::Event event;
-			while (window->pollEvent(event)) {
-				if (event.type == sf::Event::Closed)
-					window->close();
-				else if (event.type == sf::Event::KeyPressed) {
-					if (event.key.code == sf::Keyboard::Up) {
-						currently_selected_item = (currently_selected_item - 1);
-						if (currently_selected_item < 0)
-							currently_selected_item = menu_items.size - 1;
-					}
-					else if (event.key.code == sf::Keyboard::Down) {
-						currently_selected_item = (currently_selected_item + 1) % (menu_items.size);
-					}
-					else if (event.key.code == sf::Keyboard::Return) {
-						menu_items.entries[currently_selected_item].action->start();
-					}
-				}
-			} // while( pollEvent )
-			window->display();
-		} // while window open
-	}
+
 } // namespace sui
