@@ -29,8 +29,8 @@ namespace ui {
 			int8_t size;
 		} menu_items;
 
-		struct cordinates {
-			cordinates() { x = y = size = 0; }
+		struct coordinates {
+			coordinates() { x = y = size = 0; }
 			float x;
 			float y;
 			int size;

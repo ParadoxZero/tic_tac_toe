@@ -11,7 +11,7 @@ void main() {
 	menu_items[1].title = "Options";
 	menu_items[1].action = new mm_events::OptionsAction;
 	menu_items[2].title = "Exit";
-	menu_items[2].action = new mm_events::ExitAction;
+	menu_items[2].action = new mm_events::ExitAction(&window);
 
 	ui::Menu mainMenu(&window, std::string("Main Menu"), menu_items,3);
 

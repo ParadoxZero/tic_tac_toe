@@ -16,7 +16,8 @@ namespace ui {
 
 	void Menu::createMenu() {
 		setMenu();
-		while (window->isOpen())
+		bool cont = true;
+		while (window->isOpen() && cont)
 		{
 			window->clear();
 			drawMenu();
@@ -34,7 +35,7 @@ namespace ui {
 						currently_selected_item = (currently_selected_item + 1) % (menu_items.size);
 					}
 					else if (event.key.code == sf::Keyboard::Return) {
-						menu_items.entries[currently_selected_item].action->start();
+						cont = menu_items.entries[currently_selected_item].action->start();
 					}
 				}
 			} // while( pollEvent )
@@ -74,7 +75,7 @@ namespace ui {
 		unsigned int fontSize = block_height * 3/4;
 		float x = window->getSize().x / 2;
 		float y = window->getSize().y - 0.75 * menu_screen_height + block_height * 1 / 8;
-		menu_location = new cordinates[menu_items.size];
+		menu_location = new coordinates[menu_items.size];
 		/* Calculating Menu item locations */
 		for (int8_t i = 0; i < menu_items.size; ++i) {
 			menu_location[i].x = x;
